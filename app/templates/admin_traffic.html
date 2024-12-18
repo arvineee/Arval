@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Traffic Statistics</h1>
+
+    <!-- Traffic Summary Section -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card bg-light p-3">
+                <h5 class="card-title">Total Visitors</h5>
+                <p class="card-text">{{ total_visitors }}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-light p-3">
+                <h5 class="card-title">Total Time Spent</h5>
+                <p class="card-text">{{ total_time_spent }} seconds</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-light p-3">
+                <h5 class="card-title">Average Time Per Visitor</h5>
+                <p class="card-text">{{ avg_time_per_visitor }} seconds</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Traffic Data Table -->
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Endpoint</th>
+                    <th>Visitor IP</th>
+                    <th>Visitors</th>
+                    <th>Total Time Spent</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stat in traffic_stats %}
+                <tr>
+                    <td>{{ stat.endpoint }}</td>
+                    <td>{{ stat.visitor_ip }}</td>
+                    <td>{{ stat.visitor_count }}</td>
+                    <td>{{ stat.total_time_spent }}</td>
+                    <td>{{ stat.timestamp }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
